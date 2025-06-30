@@ -33,7 +33,7 @@ impl BND4File {
 
             f.seek(SeekFrom::Start(entry_header.name_offset as u64))
                 .map_err(BND4Error::IoError)?;
-            let entry_name = if header.is_unicode == 1 {
+            let entry_name = if header.is_unicode {
                 encodings::read_utf16(&mut f)
             } else {
                 encodings::read_shift_jis(&mut f)

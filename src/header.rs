@@ -10,6 +10,7 @@ pub struct BND4Header {
     pub signature: u64,
     pub entry_header_size: u64,
     pub data_offset: u64,
-    pub is_unicode: i8,
-    pub unknown3: [u8; 15]
+    #[br(map = |x: u8| if x == 1 { true } else { false })]
+    pub is_unicode: bool,
+    pub unknown3: [u8; 15],
 }
